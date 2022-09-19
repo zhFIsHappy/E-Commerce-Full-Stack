@@ -1,4 +1,4 @@
-import 'package:amazon_clone/common/widgets/custome_button.dart';
+import 'package:amazon_clone/common/widgets/custom_button.dart';
 import 'package:amazon_clone/constants/global_variables.dart';
 import 'package:amazon_clone/features/auth/services/auth_service.dart';
 import 'package:flutter/src/foundation/key.dart';

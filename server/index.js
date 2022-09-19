@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const adminRouter = require('./routes/admin');
 
 const authRouter = require('./routes/auth');
 
@@ -12,6 +13,7 @@ const DB1 = 'mongodb+srv://AnnaF2022:cocoiscute@cluster0.t2heder.mongodb.net/?re
 
 app.use(express.json());
 app.use(authRouter);
+app.use(adminRouter);
 
 mongoose.connect(DB1).then(()=>{
     console.log('Connected to DB');
