@@ -1,13 +1,11 @@
+// Already done!
+import 'package:amazon_clone/constants/global_variables.dart';
 import 'package:amazon_clone/features/home/widgets/address_box.dart';
 import 'package:amazon_clone/features/home/widgets/carousel_image.dart';
 import 'package:amazon_clone/features/home/widgets/deal_of_day.dart';
 import 'package:amazon_clone/features/home/widgets/top_categories.dart';
+import 'package:amazon_clone/features/search/screens/search_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:provider/provider.dart';
-
-import '../../../constants/global_variables.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String routeName = '/home';
@@ -18,6 +16,10 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  void navigateToSearchScreen(String query) {
+    Navigator.pushNamed(context, SearchScreen.routeName, arguments: query);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,13 +42,19 @@ class _HomeScreenState extends State<HomeScreen> {
                     borderRadius: BorderRadius.circular(7),
                     elevation: 1,
                     child: TextFormField(
+                      onFieldSubmitted: navigateToSearchScreen,
                       decoration: InputDecoration(
                         prefixIcon: InkWell(
                           onTap: () {},
                           child: const Padding(
-                            padding: EdgeInsets.only(left: 6),
-                            child: Icon(Icons.search,
-                                color: Colors.black, size: 23),
+                            padding: EdgeInsets.only(
+                              left: 6,
+                            ),
+                            child: Icon(
+                              Icons.search,
+                              color: Colors.black,
+                              size: 23,
+                            ),
                           ),
                         ),
                         filled: true,
@@ -62,10 +70,12 @@ class _HomeScreenState extends State<HomeScreen> {
                           borderRadius: BorderRadius.all(
                             Radius.circular(7),
                           ),
-                          borderSide:
-                              BorderSide(color: Colors.black38, width: 1),
+                          borderSide: BorderSide(
+                            color: Colors.black38,
+                            width: 1,
+                          ),
                         ),
-                        hintText: "Search",
+                        hintText: 'Search Amazon.in',
                         hintStyle: const TextStyle(
                           fontWeight: FontWeight.w500,
                           fontSize: 17,

@@ -31,25 +31,29 @@ class AuthService {
         address: '',
         type: '',
         token: '',
+        cart: [],
       );
 
+      // Connect to auth.js
       http.Response res = await http.post(
-        Uri.parse('$uri/api/signup'),
-        body: user.toJson(),
-        headers: <String, String>{
-          'Content-Type': 'application/json; charset=UTF-8',
-        },
-      );
-      httpErrorHandle(
-        response: res,
-        context: context,
-        onSuccess: () {
-          showSnackBar(context, 'Successfully Created Account');
-        },
-      );
-    } catch (e) {
-      showSnackBar(context, e.toString());
-    }
+          Uri.parse('$uri/api/signup'),
+          body: user.toJson(),
+          headers: <String, String>{
+            'Content-Type': 'application/json; charset=UTF-8',
+          },
+        );
+        // Handle the error from api, which could return 500 and not deteched by the catch
+        //constants/error_handler.dart
+        httpErrorHandle(
+          response: res,
+          context: context,
+          onSuccess: () {
+            showSnackBar(context, 'Successfully Created Account');
+          },
+        );
+      } catch (e) {
+        showSnackBar(context, e.toString());
+      }
   }
 
   // sign in user

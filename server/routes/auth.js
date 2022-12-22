@@ -5,6 +5,7 @@ const authRouter = express.Router();
 const jwt = require('jsonwebtoken');
 const auth = require("../middlewares/auth");
 
+// Sign up
 authRouter.post("/api/signup", async (req,res)=>{
     try{
         const {name, email, password} = req.body;
@@ -31,9 +32,11 @@ authRouter.post("/api/signup", async (req,res)=>{
 authRouter.post('/api/signin', async(req, res) =>{
     try{
         const {email, password} = req.body;
+
+        // find user
         const user = await User.findOne({email});
         if(!user){
-            return res.status(400).json({msg: 'User does nit exist'});
+            return res.status(400).json({msg: 'User does not exist'});
         }
 
         // check matching password
